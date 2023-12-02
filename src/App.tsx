@@ -3,6 +3,8 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ToDoApp from "./components/todoComps/ToDoApp";
+import Register from "./components/userComps/Register";
+import Login from "./components/userComps/Login";
 
 function App() {
   return (
@@ -10,9 +12,14 @@ function App() {
       <div className="flex flex-col h-screen">
         <BrowserRouter>
           <Header />
-          <Routes>
-            <Route path="/" element={<ToDoApp />} />
-          </Routes>
+          <div className="bg-gray-700 lg:p-12 p-6 grow">
+            <Routes>
+              <Route path="/" element={<ToDoApp />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </div>
+
           <Footer />
         </BrowserRouter>
       </div>

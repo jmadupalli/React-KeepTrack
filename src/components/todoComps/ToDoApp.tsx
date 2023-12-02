@@ -20,7 +20,7 @@ const ToDoApp = () => {
     localStorage.setItem("todoItems", JSON.stringify(state));
   }, [state]);
   return (
-    <div className="bg-gray-700 lg:p-12 p-6 grow">
+    <>
       <ToDoForm state={state} dispatch={dispatch} />
       <div className="lg:w-11/12 w-full min-h-[50%] lg:min-h-[80%] m-auto lg:p-6 p-4 dark:dark:bg-gray-900 dark:dark:text-gray-100 lg:grid lg:grid-cols-3 block lg:gap-10 text-center">
         <div className="rounded bg-gray-600 p-4 lg:mb-0 mb-4 xl:max-h-[70%] xl:overflow-y-auto">
@@ -56,7 +56,7 @@ const ToDoApp = () => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
