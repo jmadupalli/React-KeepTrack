@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActionType, Status, ToDo } from "./reducer/todoReducer";
+import { ActionType, Status, ToDo } from "../reducer/todoReducer";
 
 const ToDoForm = ({
   state,
@@ -23,7 +23,7 @@ const ToDoForm = ({
   };
 
   return (
-    <div className="bg-gray-900 rounded-md w-11/12 p-6 m-auto mb-3 text-center">
+    <div className="bg-gray-900 rounded-md lg:w-11/12 w-full p-6 m-auto mb-3 text-center">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -31,7 +31,7 @@ const ToDoForm = ({
         }}
       >
         <input
-          className="form-input py-3 w-6/12"
+          className="form-input py-3 lg:w-6/12 w-10/12"
           type="text"
           placeholder="Enter To Do Item"
           onChange={(e) => setItem(e.target.value)}
@@ -39,7 +39,7 @@ const ToDoForm = ({
           required
         />
         <select
-          className="form-select py-3 ml-3"
+          className="form-select py-3 m-1 lg:ml-3 lg:w-3/12 w-10/12"
           required
           value={status}
           onChange={(e) => {
@@ -51,7 +51,10 @@ const ToDoForm = ({
           <option value="In Progress">In Progress</option>
           <option value="Completed">Completed</option>
         </select>
-        <button className="bg-red-400 rounded px-8 py-3 ml-3" type="submit">
+        <button
+          className="block bg-red-400 rounded px-8 py-3 m-auto xl:inline xl:ml-2"
+          type="submit"
+        >
           Submit
         </button>
       </form>

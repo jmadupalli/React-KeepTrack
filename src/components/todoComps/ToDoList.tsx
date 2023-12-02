@@ -1,5 +1,5 @@
 import ToDoItem from "./ToDoItem";
-import { ActionType, Status, ToDo } from "./reducer/todoReducer";
+import { ActionType, Status, ToDo } from "../reducer/todoReducer";
 
 const ToDoList = ({
   todos,
@@ -12,7 +12,7 @@ const ToDoList = ({
 }) => {
   const filteredTodos = todos.filter((todo) => todo.status == condition);
   return filteredTodos.map((todo) => (
-    <ToDoItem todo={todo} dispatch={dispatch} />
+    <ToDoItem key={todo.id} todo={todo} dispatch={dispatch} />
   ));
 };
 

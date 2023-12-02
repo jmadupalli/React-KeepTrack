@@ -28,7 +28,7 @@ const todoReducer = (
       );
       return {
         nextId: state.nextId,
-        todos: filtered,
+        todos: [...filtered],
       };
     }
 
