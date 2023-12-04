@@ -1,6 +1,7 @@
 export type Status = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
 
 export type ToDo = {
+  id: number;
   item: string;
   status: Status;
   added: Date;
