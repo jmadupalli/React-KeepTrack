@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { ActionType, Status, ToDo } from "../reducer/todoReducer";
+import { ActionType, AddType, Status, ToDo } from "../reducer/todoReducer";
 
 const ToDoForm = ({
-  state,
   dispatch,
 }: {
-  state: { nextId: number; todos: ToDo[] };
-  dispatch: React.Dispatch<ActionType>;
+  state: { todos: ToDo[] };
+  dispatch: React.Dispatch<AddType | ActionType>;
 }) => {
   const [item, setItem] = useState("");
-  const [status, setStatus] = useState<Status>("Not Started");
+  const [status, setStatus] = useState<Status>("NOT_STARTED");
 
   const handleSubmit = () => {
     if (!item) {
@@ -18,7 +17,7 @@ const ToDoForm = ({
 
     dispatch({
       type: "add",
-      payload: { id: state.nextId, item, status, added: new Date() },
+      payload: { item, status, added: new Date() },
     });
   };
 
@@ -47,9 +46,9 @@ const ToDoForm = ({
           }}
         >
           <option disabled>Select Status</option>
-          <option value="Not Started">Not Started</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Completed">Completed</option>
+          <option value="NOT_STARTED">Not Started</option>
+          <option value="IN_PROGRESS">In Progress</option>
+          <option value="COMPLETED">Completed</option>
         </select>
         <button
           className="block bg-red-400 rounded px-8 py-3 m-auto xl:inline xl:ml-2"

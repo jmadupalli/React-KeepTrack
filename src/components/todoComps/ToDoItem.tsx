@@ -1,22 +1,16 @@
 import { ActionType, ToDo } from "../reducer/todoReducer";
 
 const ToDoItem = ({
+  id,
   todo,
   dispatch,
 }: {
+  id: number;
   todo: ToDo;
   dispatch: React.Dispatch<ActionType>;
 }) => {
   const handleMove = () => {
-    const todoU = todo;
-    switch (todo.status) {
-      case "Not Started":
-        todoU.status = "In Progress";
-        break;
-      case "In Progress":
-        todoU.status = "Completed";
-    }
-    dispatch({ type: "move", payload: todoU });
+    dispatch({ type: "move", payload: id - 1 });
   };
 
   return (
@@ -25,7 +19,7 @@ const ToDoItem = ({
         <p className="text-md dark:dark:text-gray-400">{todo.item}</p>
       </div>
       <div className="flex items-center gap-3 p-3 w-full text-center lg:w-4/12">
-        <span className="text-xs text-white">#{todo.id}</span>
+        <span className="text-xs text-white">#{id}</span>
         <div className="space-y-1 w-full">
           <span className="text-xs block">
             {new Date(todo.added).toLocaleDateString() +
@@ -35,7 +29,7 @@ const ToDoItem = ({
           <p className="inline-block px-2 py-1 text-xs font-semibold rounded-md dark:dark:bg-green-400 dark:dark:text-gray-900">
             {todo.status}
           </p>
-          {todo.status !== "Completed" && (
+          {todo.status !== "COMPLETED" && (
             <button
               onClick={() => handleMove()}
               className="m-1 px-2 py-1 text-xs font-semibold rounded-md dark:dark:bg-blue-400 dark:dark:text-gray-900 hover:bg-blue-600"
@@ -44,7 +38,7 @@ const ToDoItem = ({
             </button>
           )}
           <button
-            onClick={() => dispatch({ type: "delete", payload: todo })}
+            onClick={() => dispatch({ type: "delete", payload: id - 1 })}
             className="m-1 px-2 py-1 text-xs font-semibold rounded-md dark:dark:bg-red-400 dark:dark:text-gray-900 hover:bg-red-600"
           >
             {"Remove"}

@@ -11,8 +11,8 @@ const ToDoList = ({
   condition: Status;
 }) => {
   const filteredTodos = todos.filter((todo) => todo.status == condition);
-  return filteredTodos.map((todo) => (
-    <ToDoItem key={todo.id} todo={todo} dispatch={dispatch} />
+  return filteredTodos.map((todo, index) => (
+    <ToDoItem key={index} id={index + 1} todo={todo} dispatch={dispatch} />
   ));
 };
 

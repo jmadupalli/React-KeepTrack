@@ -1,45 +1,51 @@
-export type Status = "Not Started" | "In Progress" | "Completed";
+export type Status = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
 
 export type ToDo = {
-  id: number;
   item: string;
   status: Status;
   added: Date;
 };
 
-export type ActionType = {
-  type: "add" | "delete" | "move";
+export type AddType = {
+  type: "add";
   payload: ToDo;
 };
 
+export type ActionType = {
+  type: "delete" | "move";
+  payload: number;
+};
+
 const todoReducer = (
-  state: { nextId: number; todos: ToDo[] },
-  action: ActionType
+  state: { todos: ToDo[] },
+  action: AddType | ActionType
 ) => {
   switch (action.type) {
     case "add":
       return {
-        nextId: state.nextId + 1,
         todos: [...state.todos, { ...action.payload }],
       };
     case "delete": {
-      const filtered = state.todos.filter(
-        (todo) => todo.id !== action.payload.id
-      );
+      const filtered = state.todos;
+      filtered.splice(action.payload, 1);
       return {
-        nextId: state.nextId,
         todos: [...filtered],
       };
     }
 
     case "move": {
-      const filtered = state.todos.filter(
-        (todo) => todo.id !== action.payload.id
-      );
-      return {
-        nextId: state.nextId,
-        todos: [...filtered, action.payload],
-      };
+      const filtered = state.todos;
+      const todoU = filtered[action.payload];
+
+      filtered.splice(action.payload, 1);
+      switch (todoU.status) {
+        case "NOT_STARTED":
+          todoU.status = "IN_PROGRESS";
+          break;
+        case "IN_PROGRESS":
+          todoU.status = "COMPLETED";
+      }
+      return { todos: [...filtered, todoU] };
     }
   }
 };
