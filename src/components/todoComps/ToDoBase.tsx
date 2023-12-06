@@ -5,7 +5,7 @@ import ToDoForm from "./ToDoForm";
 import ToDoList from "./ToDoList";
 
 const ToDoBase = ({
-  todos,
+  todos = [],
   dispatch,
   mutations,
 }: {

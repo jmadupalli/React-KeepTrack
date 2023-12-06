@@ -135,7 +135,7 @@ const Register = () => {
                   type="submit"
                   className="w-full px-8 py-3 font-semibold rounded-md bg-red-400 text-gray-900"
                 >
-                  Sign in
+                  Sign Up
                 </button>
               </div>
               <p className="px-6 text-sm text-center text-gray-400">

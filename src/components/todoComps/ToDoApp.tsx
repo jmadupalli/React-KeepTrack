@@ -12,7 +12,7 @@ const getInitialState = () => {
 const ToDoApp = () => {
   const [state, dispatch] = useReducer(todoReducer, getInitialState());
 
-  const todos = state.todos;
+  const todos = state.todos ?? [];
 
   useEffect(() => {
     localStorage.setItem("todoItems", JSON.stringify(state));
