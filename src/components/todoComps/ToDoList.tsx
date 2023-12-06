@@ -17,7 +17,7 @@ const ToDoList = ({
   return filteredTodos.map((todo, index) => (
     <ToDoItem
       key={index}
-      id={index + 1}
+      id={todo.id}
       todo={todo}
       dispatch={dispatch}
       mutations={mutations}

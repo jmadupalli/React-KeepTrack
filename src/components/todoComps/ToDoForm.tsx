@@ -20,7 +20,7 @@ const ToDoForm = ({
     if (dispatch)
       dispatch({
         type: "add",
-        payload: { id: 0, item, status, added: new Date() },
+        payload: { item, status, added: new Date() },
       });
     if (mutations)
       mutations.addMutation.mutate({ item, status, added: new Date() });

@@ -3,7 +3,6 @@ import { mutationsType } from "../reducer/UserContest";
 import { ActionType, Status, ToDo } from "../reducer/todoReducer";
 
 const ToDoItem = ({
-  id,
   todo,
   dispatch,
   mutations,
@@ -14,7 +13,7 @@ const ToDoItem = ({
   mutations: mutationsType | null;
 }) => {
   const handleMove = () => {
-    if (dispatch) dispatch({ type: "move", payload: id - 1 });
+    if (dispatch) dispatch({ type: "move", payload: todo.id });
     if (mutations) {
       let newStatus: Status = todo.status;
       switch (todo.status) {
@@ -32,7 +31,7 @@ const ToDoItem = ({
   };
 
   const handleDelete = () => {
-    if (dispatch) dispatch({ type: "delete", payload: id - 1 });
+    if (dispatch) dispatch({ type: "delete", payload: todo.id });
     if (mutations) mutations.deleteMutation.mutate(todo.id);
   };
 
@@ -42,7 +41,7 @@ const ToDoItem = ({
         <p className="text-md text-gray-400">{todo.item}</p>
       </div>
       <div className="flex items-center gap-3 p-3 w-full text-center lg:w-4/12">
-        <span className="text-xs text-white">#{id}</span>
+        <span className="text-xs text-white">#{todo.sno}</span>
         <div className="space-y-1 w-full">
           <span className="text-xs block">
             {new Date(todo.added).toLocaleDateString() +

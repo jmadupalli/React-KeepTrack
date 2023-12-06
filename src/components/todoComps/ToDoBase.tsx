@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { mutationsType } from "../reducer/UserContest";
 import { ActionType, AddType, ToDo } from "../reducer/todoReducer";
 import ToDoForm from "./ToDoForm";
@@ -12,6 +13,9 @@ const ToDoBase = ({
   dispatch: React.Dispatch<AddType | ActionType> | null;
   mutations: mutationsType | null;
 }) => {
+  const addSno = () => todos.forEach((todo, idx) => (todo.sno = idx + 1));
+  useMemo(addSno, [todos]);
+
   return (
     <>
       <ToDoForm dispatch={dispatch} mutations={mutations} />
